@@ -53,14 +53,15 @@ public class CommentService {
     /**
      * Creates a new comment for an article.
      *
+     * @param articleId The ID of the article to which the comment belongs
      * @param commentRequest The comment data to create
      * @return The created comment as a response DTO
      * @throws ResourceNotFoundException if article is not found
      */
-    public CommentDto.Response createComment(CommentDto.Request commentRequest) {
+    public CommentDto.Response createComment(Long articleId, CommentDto.Request commentRequest) {
         // Find the article to which this comment belongs
-        Article article = articleRepository.findById(commentRequest.getArticleId())
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found with id: " + commentRequest.getArticleId()));
+        Article article = articleRepository.findById(articleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found with id: " + articleId));
 
         // Create and save the new comment
         Comment comment = new Comment();

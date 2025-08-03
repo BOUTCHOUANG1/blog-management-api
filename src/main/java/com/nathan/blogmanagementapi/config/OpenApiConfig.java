@@ -1,4 +1,4 @@
-package com.nathan.blogmanagementapi;
+package com.nathan.blogmanagementapi.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

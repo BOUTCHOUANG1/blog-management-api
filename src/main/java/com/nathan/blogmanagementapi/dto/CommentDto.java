@@ -1,7 +1,7 @@
 package com.nathan.blogmanagementapi.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -23,13 +23,6 @@ public class CommentDto {
          */
         @NotBlank(message = "Comment content is required")
         private String content;
-
-        /**
-         * ID of the article to which this comment belongs.
-         * Must not be null.
-         */
-        @NotNull(message = "Article ID is required")
-        private Long articleId;
     }
 
     /**

@@ -21,7 +21,7 @@ import java.util.List;
  * Provides endpoints for creating and retrieving comments.
  */
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/api/articles/{articleId}/comments")
 @RequiredArgsConstructor
 @Tag(name = "Comment Management", description = "APIs for managing article comments")
 public class CommentController {
@@ -38,7 +38,7 @@ public class CommentController {
      * @param articleId The ID of the article
      * @return ResponseEntity containing list of comments
      */
-    @GetMapping("/article/{articleId}")
+    @GetMapping
     @Operation(summary = "Get all comments for an article", description = "Returns all comments for a specific article")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Comments retrieved successfully"),
@@ -64,7 +64,8 @@ public class CommentController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     public ResponseEntity<CommentDto.Response> createComment(
+            @PathVariable Long articleId,
             @Valid @RequestBody CommentDto.Request commentRequest) {
-        return new ResponseEntity<>(commentService.createComment(commentRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(commentService.createComment(articleId, commentRequest), HttpStatus.CREATED);
     }
 }
